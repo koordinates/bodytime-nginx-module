@@ -1,0 +1,6 @@
+ngx_addon_name=ngx_http_bodytime_filter_module
+NGX_ADDON_SRCS="$NGX_ADDON_SRCS $ngx_addon_dir/src/ngx_http_bodytime_filter_module.c"
+
+# add it *before* the gzip filter (so it times when the gzip filter has started sending data)
+# though see http://forum.nginx.org/read.php?29,246968
+HTTP_FILTER_MODULES=`echo $HTTP_FILTER_MODULES | sed "s/$HTTP_GZIP_FILTER_MODULE/ngx_http_bodytime_filter_module $HTTP_GZIP_FILTER_MODULE/"`
